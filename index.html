@@ -16,29 +16,42 @@
 </head>
 <body>
   <header>
+    <h2 class="header">Code Journal</h2>
   </header>
-  <main>
-    <div data-view = "entry-form">
-      <h1>New Entry</h1>
-      <img src="blank">
-      <form action="" method="GET" class="form">
-        <label>
-          Title
-          <input type="text" name="title">
-        </label>
-        <label>
-          PhotoURL
-          <input type="url" name="photo">
-        </label>
-        <label>
-          Notes
-          <textarea name="notes" rows="10"></textarea>
-        </label>
-        <input type="submit" value="Save">
-      </form>
-    </div>
-  </main>
-  <script src="js/data.js"></script>
-  <script src="js/main.js"></script>
+  <div class="container">
+    <main>
+      <div data-view = "entry-form">
+        <h1>New Entry</h1>
+        <form action="" method="GET" class="form">
+          <div class="row">
+            <img src="images/placeholder-image-square.jpg" class="column-half">
+            <div class="column-half">
+              <label>
+                <h3>Title</h3>
+                <input type="text" name="title" class="column-full input">
+              </label>
+              <label>
+                <h3>Photo URL</h3>
+                <input type="url" name="photo" class="column-full input">
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="column-full">
+              <label>
+                <h3>Notes</h3>
+                <textarea rows="6" class="input"></textarea>
+              </label>
+              <div class="row flex-end">
+                <input type="submit" value="Save" class="button">
+              </div>
+            </div>
+        </div>
+        </form>
+      </div>
+    </main>
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+  </div>
 </body>
 </html>

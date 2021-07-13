@@ -30,6 +30,31 @@ function submit(event) {
   data.entries.unshift(object);
   photo.setAttribute('src', 'images/placeholder-image-square.jpg');
   form.reset();
+  ul.appendChild(journalSingle(object));
+  switchtoEntries(event);
+}
+
+function journalSingle(object) {
+  var li = document.createElement('li');
+  li.setAttribute('class', 'row');
+
+  var img = document.createElement('img');
+  img.setAttribute('class', 'column-half');
+  img.setAttribute('src', object.url);
+  li.appendChild(img);
+  var div = document.createElement('div');
+  div.setAttribute('class', 'column-half');
+  li.appendChild(div);
+  var h2 = document.createElement('h2');
+  div.appendChild(h2);
+  var entryTitle = document.createTextNode(object.title);
+  h2.append(entryTitle);
+  var p = document.createElement('p');
+  div.appendChild(p);
+  var description = document.createTextNode(object.notes);
+  p.append(description);
+
+  return li;
 }
 
 function journalView(entry) {

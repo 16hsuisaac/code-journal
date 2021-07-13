@@ -1,14 +1,15 @@
 header {
   background-color: rgb(86, 43, 129);
-  color: white;
-  font-size: 0.75rem;
-  padding: 0.5rem;
-  padding-left: 1.5rem;
 }
 
 .header {
-  margin: 0;
+  color: white;
+  font-size: 1rem;
+  padding: 0.5rem;
+  padding-left: 1.5rem;
   font-weight: 100;
+  max-width: 900px;
+  margin: auto;
 }
 
 body {
@@ -49,6 +50,14 @@ h3 {
   justify-content: flex-end;
 }
 
+.space-between {
+  justify-content: space-between;
+}
+
+.align-center {
+  align-items: center;
+}
+
 .button {
   background-color: rgb(86, 43, 129);
   color: white;
@@ -64,4 +73,13 @@ textarea {
 
 textarea:focus {
   border: 0.1rem solid rgb(86, 43, 129);
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+button {
+  height: 2rem;
 }

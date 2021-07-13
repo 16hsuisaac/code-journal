@@ -20,7 +20,7 @@
   </header>
   <div class="container">
     <main>
-      <div data-view="entry-form">
+      <div data-view="entry-form" class="hidden">
         <h1>New Entry</h1>
         <form action="" method="GET" class="form">
           <div class="row">
@@ -50,9 +50,17 @@
         </form>
       </div>
       <div data-view="entries">
-        <li>
-          <ul></ul>
-        </li>
+        <div class="row space-between align-center">
+          <h1>Entries</h1>
+          <button class="button new">New</button>
+        </div>
+        <ul>
+          <li>
+            <img src="images/placeholder-image-square.jpg" class="column-half">
+            <h3>Title</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas quia quos itaque quisquam repellendus debitis odit error accusamus corporis sit!</p>
+          </li>
+        </ul>
       </div>
     </main>
     <script src="js/data.js"></script>

@@ -16,19 +16,10 @@ function updateImage(event) {
 
 function submit(event) {
   event.preventDefault();
-  var object = { Title: title.value, URL: photoURL.value, Notes: notes.value };
+  var object = { title: title.value, url: photoURL.value, notes: notes.value };
   object.nextEntryId = data.nextEntryId;
   data.nextEntryId++;
   data.entries.unshift(object);
   photo.setAttribute('src', 'images/placeholder-image-square.jpg');
   form.reset();
-  var dataEntriesJSON = JSON.stringify(data.entries);
-  localStorage.setItem('data-entry', dataEntriesJSON);
-}
-
-var previousEntriesJSON = localStorage.getItem('data-entry');
-if (previousEntriesJSON !== null) {
-  data.entries.push(JSON.parse(previousEntriesJSON));
-  data.entries.flat();
-  data.nextEntryId = data.entries.length + 1;
 }

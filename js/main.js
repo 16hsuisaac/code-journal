@@ -6,7 +6,6 @@ var photo = document.querySelector('img');
 var form = document.querySelector('.form');
 var title = document.querySelector('.title');
 var notes = document.querySelector('.notes');
-var i = 1;
 
 photoURL.addEventListener('input', updateImage);
 form.addEventListener('submit', submit);
@@ -16,11 +15,11 @@ function updateImage(event) {
 }
 
 function submit(event) {
+  event.preventDefault();
   var object = { Title: title.value, URL: photoURL.value, Notes: notes.value };
-  object.nextEntryID = i;
-  i++;
-  data.entries.append(object);
-  photoURL.value = 'images/placeholder-image-square.jpg';
-  title.value = '';
-  notes.value = '';
+  object.nextEntryId = data.nextEntryId;
+  data.nextEntryId++;
+  data.entries.unshift(object);
+  photo.setAttribute('src', 'images/placeholder-image-square.jpg');
+  form.reset();
 }

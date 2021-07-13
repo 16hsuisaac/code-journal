@@ -22,4 +22,13 @@ function submit(event) {
   data.entries.unshift(object);
   photo.setAttribute('src', 'images/placeholder-image-square.jpg');
   form.reset();
+  var dataEntriesJSON = JSON.stringify(data.entries);
+  localStorage.setItem('data-entry', dataEntriesJSON);
+}
+
+var previousEntriesJSON = localStorage.getItem('data-entry');
+if (previousEntriesJSON !== null) {
+  data.entries.push(JSON.parse(previousEntriesJSON));
+  data.entries.flat();
+  data.nextEntryId = data.entries.length + 1;
 }

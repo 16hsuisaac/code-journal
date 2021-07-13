@@ -4,7 +4,6 @@ header {
 
 .header {
   color: white;
-  font-size: 1rem;
   padding: 0.5rem;
   padding-left: 1.5rem;
   font-weight: 100;
@@ -38,7 +37,7 @@ input {
 }
 
 h1 {
-  font-size: 1.5rem;
+  padding-bottom: 0;
 }
 
 h2 {
@@ -60,6 +59,10 @@ h3 {
 
 .align-center {
   align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
 }
 
 .button {
@@ -84,10 +87,18 @@ ul {
   padding: 0;
 }
 
+li {
+  padding-bottom: 2rem;
+}
+
 button {
   height: 1.8rem;
 }
 
 .new {
   padding: 0.5rem;
+}
+
+.flex {
+  display: flex;
 }

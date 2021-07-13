@@ -17,8 +17,8 @@ function updateImage(event) {
 function submit(event) {
   event.preventDefault();
   var object = { title: title.value, url: photoURL.value, notes: notes.value };
-  object.EntryId = data.EntryId;
-  data.EntryId++;
+  object.entryId = data.entryId;
+  data.entryId++;
   data.entries.unshift(object);
   photo.setAttribute('src', 'images/placeholder-image-square.jpg');
   form.reset();

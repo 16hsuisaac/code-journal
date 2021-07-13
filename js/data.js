@@ -4,7 +4,7 @@ var data = {
   view: 'entry-form',
   entries: [],
   editing: null,
-  entryId: 1
+  nextEntryId: 1
 };
 
 window.addEventListener('unload', beforeUnload);

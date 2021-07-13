@@ -7,9 +7,16 @@ var form = document.querySelector('.form');
 var title = document.querySelector('.title');
 var notes = document.querySelector('.notes');
 var ul = document.querySelector('ul');
+var entriesNav = document.querySelector('.entries-nav');
+var entryForm = document.querySelector('.entry-form');
+var noEntries = document.querySelector('.no-entries');
+var newButton = document.querySelector('.new');
+var entries = document.querySelector('.entries');
 
 photoURL.addEventListener('input', updateImage);
 form.addEventListener('submit', submit);
+entriesNav.addEventListener('click', switchtoEntries);
+newButton.addEventListener('click', switchtoForm);
 
 function updateImage(event) {
   photo.setAttribute('src', photoURL.value);
@@ -55,3 +62,18 @@ function parentJournalView(event) {
 }
 
 window.addEventListener('DOMContentLoaded', parentJournalView);
+
+function switchtoEntries(event) {
+  entryForm.setAttribute('class', 'entry-form hidden');
+  entries.setAttribute('class', 'entries');
+  if (data.entries.length > 0) {
+    noEntries.setAttribute('class', 'no-entries hidden');
+  } else {
+    entryForm.setAttribute('class', 'entries hidden');
+  }
+}
+
+function switchtoForm(event) {
+  entryForm.setAttribute('class', 'entry-form');
+  entries.setAttribute('class', 'entries hidden');
+}

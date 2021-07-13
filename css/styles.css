@@ -49,6 +49,10 @@ h3 {
   font-size: 1rem;
 }
 
+.flex-start {
+  justify-content: flex-start;
+}
+
 .flex-end {
   justify-content: flex-end;
 }
@@ -101,4 +105,16 @@ button {
 
 .flex {
   display: flex;
+}
+
+.nav {
+  padding-bottom: 0;
+}
+
+.no-padding-left {
+  padding-left: 0;
+}
+
+.no-margin {
+  margin: 0;
 }

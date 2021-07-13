@@ -15,12 +15,15 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <header>
-    <h2 class="header">Code Journal</h2>
+  <header class="row align-center">
+    <h2 class="header  no-margin">Code Journal</h2>
+    <nav class="header no-padding no-margin">
+      <a class="entries-nav header">Entries</a>
+    </nav>
   </header>
   <div class="container">
     <main>
-      <div data-view="entry-form">
+      <div data-view="entry-form" class="entry-form">
         <h2>New Entry</h2>
         <form action="" method="GET" class="form">
           <div class="row">
@@ -49,13 +52,13 @@
         </div>
         </form>
       </div>
-      <div data-view="entries">
+      <div data-view="entries" class="entries hidden">
         <div class="row space-between align-center">
           <h1>Entries</h1>
           <button class="button new">NEW</button>
         </div>
         <div class="flex justify-center">
-          <p>No entries have been recorded.</p>
+          <p class="no-entries hidden">No entries have been recorded.</p>
         </div>
         <ul>
         </ul>

@@ -106,14 +106,7 @@ function switchtoForm(event) {
 }
 
 if (data.view === 'entry-form') {
-  entryForm.setAttribute('class', 'entry-form');
-  entries.setAttribute('class', 'entries hidden');
+  switchtoForm();
 } else if (data.view === 'entries') {
-  entryForm.setAttribute('class', 'entry-form hidden');
-  entries.setAttribute('class', 'entries');
-  if (data.entries.length > 0) {
-    noEntries.setAttribute('class', 'no-entries hidden');
-  } else {
-    entryForm.setAttribute('class', 'entries hidden');
-  }
+  switchtoEntries();
 }

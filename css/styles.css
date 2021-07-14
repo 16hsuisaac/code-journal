@@ -1,14 +1,14 @@
 header {
   background-color: rgb(86, 43, 129);
-  color: white;
-  font-size: 0.75rem;
-  padding: 0.5rem;
-  padding-left: 1.5rem;
 }
 
 .header {
-  margin: 0;
+  color: white;
+  padding: 0.5rem;
+  padding-left: 1.5rem;
   font-weight: 100;
+  max-width: 900px;
+  margin: auto;
 }
 
 body {
@@ -37,7 +37,11 @@ input {
 }
 
 h1 {
-  font-size: 1.5rem;
+  padding-bottom: 0;
+}
+
+h2 {
+  margin-bottom: 0.5rem;
 }
 
 h3 {
@@ -45,8 +49,24 @@ h3 {
   font-size: 1rem;
 }
 
+.flex-start {
+  justify-content: flex-start;
+}
+
 .flex-end {
   justify-content: flex-end;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
 }
 
 .button {
@@ -64,4 +84,37 @@ textarea {
 
 textarea:focus {
   border: 0.1rem solid rgb(86, 43, 129);
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  padding-bottom: 2rem;
+}
+
+button {
+  height: 1.8rem;
+}
+
+.new {
+  padding: 0.5rem;
+}
+
+.flex {
+  display: flex;
+}
+
+.nav {
+  padding-bottom: 0;
+}
+
+.no-padding-left {
+  padding-left: 0;
+}
+
+.no-margin {
+  margin: 0;
 }

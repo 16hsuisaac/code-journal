@@ -12,13 +12,12 @@ var entryForm = document.querySelector('.entry-form');
 var noEntries = document.querySelector('.no-entries');
 var newButton = document.querySelector('.new');
 var entries = document.querySelector('.entries');
-/* var editButton = document.querySelector('.edit'); */
 
 photoURL.addEventListener('input', updateImage);
 form.addEventListener('submit', submit);
 entriesNav.addEventListener('click', switchtoEntries);
 newButton.addEventListener('click', switchtoForm);
-/* editButton.addEventListener('click', editEntries); */
+ul.addEventListener('click', log);
 
 function updateImage(event) {
   photo.setAttribute('src', photoURL.value);
@@ -131,8 +130,5 @@ if (data.view === 'entry-form') {
   switchtoEntries();
 }
 
-/* function editEntries(event) {
-  switchtoForm();
-
+function log() {
 }
- */

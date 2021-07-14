@@ -25,19 +25,41 @@ function updateImage(event) {
 
 function submit(event) {
   event.preventDefault();
-  var object = { title: title.value, url: photoURL.value, notes: notes.value };
-  object.entryId = data.nextEntryId;
-  data.nextEntryId++;
-  data.entries.unshift(object);
-  photo.setAttribute('src', 'images/placeholder-image-square.jpg');
-  form.reset();
-  ul.appendChild(journalSingle(object));
+  if (data.editing !== null) {
+    var objectEdit = { title: title.value, url: photoURL.value, notes: notes.value };
+    objectEdit.entryId = data.editing.entryId;
+    for (var u = 0; u < data.entries.length; u++) {
+      if (parseInt(data.entries[u].entryId) === objectEdit.entryId) {
+        data.entries[u] = objectEdit;
+      }
+    }
+    var editedEntry = journalSingle(objectEdit);
+    var liItems = document.querySelectorAll('li');
+    for (var o = 0; o < liItems.length; o++) {
+      if (parseInt(liItems[o].getAttribute('data-entry-id')) === objectEdit.entryId) {
+        liItems[o] = ul.replaceChild(editedEntry, liItems[o]);
+      }
+    }
+    title.value = '';
+    photoURL.value = '';
+    notes.value = '';
+    data.editing = null;
+  } else {
+    var object = { title: title.value, url: photoURL.value, notes: notes.value };
+    object.entryId = data.nextEntryId;
+    data.nextEntryId++;
+    data.entries.unshift(object);
+    photo.setAttribute('src', 'images/placeholder-image-square.jpg');
+    form.reset();
+    ul.appendChild(journalSingle(object));
+  }
   switchtoEntries(event);
 }
 
 function journalSingle(object) {
   var li = document.createElement('li');
   li.setAttribute('class', 'row');
+  li.setAttribute('data-entry-id', object.entryId);
 
   var img = document.createElement('img');
   img.setAttribute('class', 'column-half');
@@ -70,6 +92,7 @@ function journalSingle(object) {
 function journalView(entry) {
   var li = document.createElement('li');
   li.setAttribute('class', 'row');
+  li.setAttribute('data-entry-id', entry.entryId);
 
   var img = document.createElement('img');
   img.setAttribute('class', 'column-half');
@@ -132,12 +155,12 @@ if (data.view === 'entry-form') {
 
 function editEntries(event) {
   if (event.target.matches('.edit')) {
-    var dataEntryId = event.target.getAttribute('data-entry-id');
+    var dataEntryId = parseInt(event.target.getAttribute('data-entry-id'));
     data.editing = data.entries[data.entries.length - (dataEntryId)];
     switchtoForm();
     title.value = data.editing.title;
     photoURL.value = data.editing.url;
     notes.value = data.editing.notes;
-
+    photo.setAttribute('src', photoURL.value);
   }
 }

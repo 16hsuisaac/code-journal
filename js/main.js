@@ -155,8 +155,12 @@ if (data.view === 'entry-form') {
 
 function editEntries(event) {
   if (event.target.matches('.edit')) {
-    var dataEntryId = parseInt(event.target.getAttribute('data-entry-id'));
-    data.editing = data.entries[data.entries.length - (dataEntryId)];
+    for (var y = 0; y < data.entries.length; y++) {
+      if (data.entries[y].entryId === parseInt(event.target.getAttribute('data-entry-id'))) {
+        var notIdMath = y;
+      }
+    }
+    data.editing = data.entries[notIdMath];
     switchtoForm();
     title.value = data.editing.title;
     photoURL.value = data.editing.url;

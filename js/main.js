@@ -52,7 +52,7 @@ function journalSingle(object) {
   var p = document.createElement('p');
   div.appendChild(p);
   var description = document.createTextNode(object.notes);
-  p.append(description);
+  p.prepend(description);
 
   return li;
 }
@@ -75,7 +75,7 @@ function journalView(entry) {
   var p = document.createElement('p');
   div.appendChild(p);
   var description = document.createTextNode(entry.notes);
-  p.append(description);
+  p.prepend(description);
 
   return li;
 }
@@ -91,6 +91,7 @@ window.addEventListener('DOMContentLoaded', parentJournalView);
 function switchtoEntries(event) {
   entryForm.setAttribute('class', 'entry-form hidden');
   entries.setAttribute('class', 'entries');
+  data.view = 'entries';
   if (data.entries.length > 0) {
     noEntries.setAttribute('class', 'no-entries hidden');
   } else {
@@ -99,6 +100,20 @@ function switchtoEntries(event) {
 }
 
 function switchtoForm(event) {
+  data.view = 'entry-form';
   entryForm.setAttribute('class', 'entry-form');
   entries.setAttribute('class', 'entries hidden');
+}
+
+if (data.view === 'entry-form') {
+  entryForm.setAttribute('class', 'entry-form');
+  entries.setAttribute('class', 'entries hidden');
+} else if (data.view === 'entries') {
+  entryForm.setAttribute('class', 'entry-form hidden');
+  entries.setAttribute('class', 'entries');
+  if (data.entries.length > 0) {
+    noEntries.setAttribute('class', 'no-entries hidden');
+  } else {
+    entryForm.setAttribute('class', 'entries hidden');
+  }
 }

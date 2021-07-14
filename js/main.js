@@ -12,11 +12,13 @@ var entryForm = document.querySelector('.entry-form');
 var noEntries = document.querySelector('.no-entries');
 var newButton = document.querySelector('.new');
 var entries = document.querySelector('.entries');
+var editButton = document.querySelector('.edit');
 
 photoURL.addEventListener('input', updateImage);
 form.addEventListener('submit', submit);
 entriesNav.addEventListener('click', switchtoEntries);
 newButton.addEventListener('click', switchtoForm);
+editButton.addEventListener('click', editEntries);
 
 function updateImage(event) {
   photo.setAttribute('src', photoURL.value);
@@ -45,10 +47,18 @@ function journalSingle(object) {
   var div = document.createElement('div');
   div.setAttribute('class', 'column-half');
   li.appendChild(div);
+  var div2 = document.createElement('div');
+  div2.setAttribute('class', 'flex space-between align-center');
+  div.appendChild(div2);
   var h2 = document.createElement('h2');
-  div.appendChild(h2);
+  div2.appendChild(h2);
   var entryTitle = document.createTextNode(object.title);
   h2.append(entryTitle);
+  var pencil = document.createElement('button');
+  pencil.setAttribute('class', 'edit');
+  div2.appendChild(pencil);
+  var pencilText = document.createTextNode('✎');
+  pencil.appendChild(pencilText);
   var p = document.createElement('p');
   div.appendChild(p);
   var description = document.createTextNode(object.notes);
@@ -68,10 +78,18 @@ function journalView(entry) {
   var div = document.createElement('div');
   div.setAttribute('class', 'column-half');
   li.appendChild(div);
+  var div2 = document.createElement('div');
+  div2.setAttribute('class', 'flex space-between align-center');
+  div.appendChild(div2);
   var h2 = document.createElement('h2');
-  div.appendChild(h2);
+  div2.appendChild(h2);
   var entryTitle = document.createTextNode(entry.title);
   h2.append(entryTitle);
+  var pencil = document.createElement('button');
+  pencil.setAttribute('class', 'edit');
+  div2.appendChild(pencil);
+  var pencilText = document.createTextNode('✎');
+  pencil.appendChild(pencilText);
   var p = document.createElement('p');
   div.appendChild(p);
   var description = document.createTextNode(entry.notes);
@@ -109,4 +127,9 @@ if (data.view === 'entry-form') {
   switchtoForm();
 } else if (data.view === 'entries') {
   switchtoEntries();
+}
+
+function editEntries(event) {
+  switchtoForm();
+
 }

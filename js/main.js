@@ -12,6 +12,7 @@ var entryForm = document.querySelector('.entry-form');
 var noEntries = document.querySelector('.no-entries');
 var newButton = document.querySelector('.new');
 var entries = document.querySelector('.entries');
+/* var liElements = document.querySelectorAll('li'); */
 /* var editButtons = document.querySelectorAll('.edit'); */
 
 photoURL.addEventListener('input', updateImage);
@@ -39,7 +40,6 @@ function submit(event) {
 function journalSingle(object) {
   var li = document.createElement('li');
   li.setAttribute('class', 'row');
-  li.setAttribute('data-entry-id', object.entryId);
 
   var img = document.createElement('img');
   img.setAttribute('class', 'column-half');
@@ -57,6 +57,7 @@ function journalSingle(object) {
   h2.append(entryTitle);
   var pencil = document.createElement('button');
   pencil.setAttribute('class', 'edit');
+  pencil.setAttribute('data-entry-id', object.entryId);
   div2.appendChild(pencil);
   var pencilText = document.createTextNode('✎');
   pencil.appendChild(pencilText);
@@ -71,7 +72,6 @@ function journalSingle(object) {
 function journalView(entry) {
   var li = document.createElement('li');
   li.setAttribute('class', 'row');
-  li.setAttribute('data-entry-id', entry.entryId);
 
   var img = document.createElement('img');
   img.setAttribute('class', 'column-half');
@@ -89,6 +89,7 @@ function journalView(entry) {
   h2.append(entryTitle);
   var pencil = document.createElement('button');
   pencil.setAttribute('class', 'edit');
+  pencil.setAttribute('data-entry-id', entry.entryId);
   div2.appendChild(pencil);
   var pencilText = document.createTextNode('✎');
   pencil.appendChild(pencilText);
@@ -132,8 +133,9 @@ if (data.view === 'entry-form') {
 }
 
 function editEntries(event) {
-/*   switchtoForm(); */
   if (event.target.matches('.edit')) {
-    switchtoForm();
+    var dataEntryId = event.target.getAttribute('data-entry-id');
+    data.editing = data.entries[dataEntryId - 1];
+    /*     switchtoForm(); */
   }
 }

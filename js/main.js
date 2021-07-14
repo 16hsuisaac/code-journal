@@ -12,13 +12,13 @@ var entryForm = document.querySelector('.entry-form');
 var noEntries = document.querySelector('.no-entries');
 var newButton = document.querySelector('.new');
 var entries = document.querySelector('.entries');
-var editButton = document.querySelector('.edit');
+/* var editButton = document.querySelector('.edit'); */
 
 photoURL.addEventListener('input', updateImage);
 form.addEventListener('submit', submit);
 entriesNav.addEventListener('click', switchtoEntries);
 newButton.addEventListener('click', switchtoForm);
-editButton.addEventListener('click', editEntries);
+/* editButton.addEventListener('click', editEntries); */
 
 function updateImage(event) {
   photo.setAttribute('src', photoURL.value);
@@ -46,6 +46,7 @@ function journalSingle(object) {
   li.appendChild(img);
   var div = document.createElement('div');
   div.setAttribute('class', 'column-half');
+  div.setAttribute('data-entry-id', object.entryId);
   li.appendChild(div);
   var div2 = document.createElement('div');
   div2.setAttribute('class', 'flex space-between align-center');
@@ -77,6 +78,7 @@ function journalView(entry) {
   li.appendChild(img);
   var div = document.createElement('div');
   div.setAttribute('class', 'column-half');
+  div.setAttribute('data-entry-id', entry.entryId);
   li.appendChild(div);
   var div2 = document.createElement('div');
   div2.setAttribute('class', 'flex space-between align-center');
@@ -129,7 +131,8 @@ if (data.view === 'entry-form') {
   switchtoEntries();
 }
 
-function editEntries(event) {
+/* function editEntries(event) {
   switchtoForm();
 
 }
+ */

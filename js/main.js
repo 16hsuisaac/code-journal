@@ -12,12 +12,13 @@ var entryForm = document.querySelector('.entry-form');
 var noEntries = document.querySelector('.no-entries');
 var newButton = document.querySelector('.new');
 var entries = document.querySelector('.entries');
+/* var editButtons = document.querySelectorAll('.edit'); */
 
 photoURL.addEventListener('input', updateImage);
 form.addEventListener('submit', submit);
 entriesNav.addEventListener('click', switchtoEntries);
 newButton.addEventListener('click', switchtoForm);
-ul.addEventListener('click', log);
+ul.addEventListener('click', editEntries);
 
 function updateImage(event) {
   photo.setAttribute('src', photoURL.value);
@@ -38,6 +39,7 @@ function submit(event) {
 function journalSingle(object) {
   var li = document.createElement('li');
   li.setAttribute('class', 'row');
+  li.setAttribute('data-entry-id', object.entryId);
 
   var img = document.createElement('img');
   img.setAttribute('class', 'column-half');
@@ -45,7 +47,6 @@ function journalSingle(object) {
   li.appendChild(img);
   var div = document.createElement('div');
   div.setAttribute('class', 'column-half');
-  div.setAttribute('data-entry-id', object.entryId);
   li.appendChild(div);
   var div2 = document.createElement('div');
   div2.setAttribute('class', 'flex space-between align-center');
@@ -70,6 +71,7 @@ function journalSingle(object) {
 function journalView(entry) {
   var li = document.createElement('li');
   li.setAttribute('class', 'row');
+  li.setAttribute('data-entry-id', entry.entryId);
 
   var img = document.createElement('img');
   img.setAttribute('class', 'column-half');
@@ -77,7 +79,6 @@ function journalView(entry) {
   li.appendChild(img);
   var div = document.createElement('div');
   div.setAttribute('class', 'column-half');
-  div.setAttribute('data-entry-id', entry.entryId);
   li.appendChild(div);
   var div2 = document.createElement('div');
   div2.setAttribute('class', 'flex space-between align-center');
@@ -130,5 +131,9 @@ if (data.view === 'entry-form') {
   switchtoEntries();
 }
 
-function log() {
+function editEntries(event) {
+/*   switchtoForm(); */
+  if (event.target.matches('.edit')) {
+    switchtoForm();
+  }
 }

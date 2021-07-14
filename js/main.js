@@ -12,8 +12,6 @@ var entryForm = document.querySelector('.entry-form');
 var noEntries = document.querySelector('.no-entries');
 var newButton = document.querySelector('.new');
 var entries = document.querySelector('.entries');
-/* var liElements = document.querySelectorAll('li'); */
-/* var editButtons = document.querySelectorAll('.edit'); */
 
 photoURL.addEventListener('input', updateImage);
 form.addEventListener('submit', submit);
@@ -135,7 +133,11 @@ if (data.view === 'entry-form') {
 function editEntries(event) {
   if (event.target.matches('.edit')) {
     var dataEntryId = event.target.getAttribute('data-entry-id');
-    data.editing = data.entries[dataEntryId - 1];
-    /*     switchtoForm(); */
+    data.editing = data.entries[data.entries.length - (dataEntryId)];
+    switchtoForm();
+    title.value = data.editing.title;
+    photoURL.value = data.editing.url;
+    notes.value = data.editing.notes;
+
   }
 }

@@ -40,9 +40,7 @@ function submit(event) {
         liItems[o] = ul.replaceChild(editedEntry, liItems[o]);
       }
     }
-    title.value = '';
-    photoURL.value = '';
-    notes.value = '';
+    form.reset();
     data.editing = null;
   } else {
     var object = { title: title.value, url: photoURL.value, notes: notes.value };

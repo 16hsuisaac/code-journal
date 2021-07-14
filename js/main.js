@@ -81,7 +81,7 @@ function journalView(entry) {
 }
 
 function parentJournalView(event) {
-  for (var i = 0; i < data.entries.length; i++) {
+  for (var i = data.entries.length - 1; i >= 0; i--) {
     ul.appendChild(journalView(data.entries[i]));
   }
 }

@@ -169,3 +169,8 @@ button {
   border: none;
   border-radius: 3px;
 }
+
+.search {
+  height: 1.8rem;
+  margin-right: 0.5rem;
+}

@@ -18,6 +18,7 @@ var cancelButton = document.querySelector('.cancel');
 var confirmDelete = document.querySelector('.confirm');
 var newEntry = document.querySelector('.new-entry');
 var editEntry = document.querySelector('.edit-entry');
+var searchBar = document.querySelector('.search');
 
 photoURL.addEventListener('input', updateImage);
 form.addEventListener('submit', submit);
@@ -27,6 +28,7 @@ ul.addEventListener('click', editEntries);
 deleteButton.addEventListener('click', deleteEntry);
 cancelButton.addEventListener('click', cancelModal);
 confirmDelete.addEventListener('click', confirmDel);
+searchBar.addEventListener('input', search);
 
 function updateImage(event) {
   photo.setAttribute('src', photoURL.value);
@@ -204,4 +206,27 @@ function confirmDel(event) {
     }
   }
   modal.className = 'modal before';
+}
+
+function search(event) {
+  var liItems = document.querySelectorAll('li');
+  var string = event.target.value;
+  for (var d = 0; d < data.entries.length; d++) {
+    if (data.entries[d].title === string || data.entries[d].notes.includes(string)) {
+      for (var f = 0; f < liItems.length; f++) {
+        if (liItems[f].getAttribute('data-entry-id') === data.entries[d].entryId) {
+          liItems[d].setAttribute('class', 'row');
+        } else {
+          liItems[d].setAttribute('class', 'row hidden');
+        }
+      }
+    } else {
+      liItems[d].setAttribute('class', 'row');
+    }
+  }
+  if (string === '') {
+    for (var g = 0; g < liItems.length; g++) {
+      liItems[g].setAttribute('class', 'row');
+    }
+  }
 }

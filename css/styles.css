@@ -129,3 +129,8 @@ button {
   font-size: 1.7rem;
   color: rgb(86, 43, 129);
 }
+
+.delete {
+  color: red;
+  text-decoration: underline;
+}

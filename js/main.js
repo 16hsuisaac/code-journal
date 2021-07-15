@@ -12,6 +12,7 @@ var entryForm = document.querySelector('.entry-form');
 var noEntries = document.querySelector('.no-entries');
 var newButton = document.querySelector('.new');
 var entries = document.querySelector('.entries');
+var deleteButton = document.querySelector('.delete');
 
 photoURL.addEventListener('input', updateImage);
 form.addEventListener('submit', submit);
@@ -42,6 +43,7 @@ function submit(event) {
     }
     form.reset();
     data.editing = null;
+    deleteButton.setAttribute('class', 'delete hidden');
   } else {
     var object = { title: title.value, url: photoURL.value, notes: notes.value };
     object.entryId = data.nextEntryId;
@@ -164,5 +166,6 @@ function editEntries(event) {
     photoURL.value = data.editing.url;
     notes.value = data.editing.notes;
     photo.setAttribute('src', photoURL.value);
+    deleteButton.setAttribute('class', 'delete');
   }
 }

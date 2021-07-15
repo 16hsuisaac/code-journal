@@ -12,12 +12,21 @@ var entryForm = document.querySelector('.entry-form');
 var noEntries = document.querySelector('.no-entries');
 var newButton = document.querySelector('.new');
 var entries = document.querySelector('.entries');
+var deleteButton = document.querySelector('.delete');
+var modal = document.querySelector('.modal');
+var cancelButton = document.querySelector('.cancel');
+var confirmDelete = document.querySelector('.confirm');
+var newEntry = document.querySelector('.new-entry');
+var editEntry = document.querySelector('.edit-entry');
 
 photoURL.addEventListener('input', updateImage);
 form.addEventListener('submit', submit);
 entriesNav.addEventListener('click', switchtoEntries);
 newButton.addEventListener('click', switchtoForm);
 ul.addEventListener('click', editEntries);
+deleteButton.addEventListener('click', deleteEntry);
+cancelButton.addEventListener('click', cancelModal);
+confirmDelete.addEventListener('click', confirmDel);
 
 function updateImage(event) {
   photo.setAttribute('src', photoURL.value);
@@ -42,6 +51,7 @@ function submit(event) {
     }
     form.reset();
     data.editing = null;
+    deleteButton.setAttribute('class', 'delete hidden');
   } else {
     var object = { title: title.value, url: photoURL.value, notes: notes.value };
     object.entryId = data.nextEntryId;
@@ -52,6 +62,8 @@ function submit(event) {
     ul.appendChild(journalSingle(object));
   }
   switchtoEntries(event);
+  newEntry.setAttribute('class', 'new-entry');
+  editEntry.setAttribute('class', 'edit-entry hidden');
 }
 
 function journalSingle(object) {
@@ -164,5 +176,32 @@ function editEntries(event) {
     photoURL.value = data.editing.url;
     notes.value = data.editing.notes;
     photo.setAttribute('src', photoURL.value);
+    deleteButton.setAttribute('class', 'delete');
+    newEntry.setAttribute('class', 'new-entry hidden');
+    editEntry.setAttribute('class', 'edit-entry');
   }
+}
+
+function deleteEntry(event) {
+  modal.className = 'modal after';
+}
+
+function cancelModal(event) {
+  modal.className = 'modal before';
+}
+
+function confirmDel(event) {
+  for (var b = 0; b < data.entries.length; b++) {
+    if (data.entries[b].entryId === data.editing.entryId) {
+      var arrayNum = b;
+    }
+  }
+  data.entries.splice(arrayNum, 1);
+  var liItems = document.querySelectorAll('li');
+  for (var c = 0; c < liItems.length; c++) {
+    if (parseInt(liItems[c].getAttribute('data-entry-id')) === data.editing.entryId) {
+      liItems[c].remove();
+    }
+  }
+  modal.className = 'modal before';
 }

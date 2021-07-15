@@ -68,9 +68,12 @@
         </form>
       </div>
       <div data-view="entries" class="entries hidden">
-        <div class="row space-between align-center">
+        <div class="row align-center space-between">
           <h1>Entries</h1>
-          <button class="button new">NEW</button>
+          <div class="flex align-center">
+            <input type="text" placeholder="Search.." class="input search">
+            <button class="button new">NEW</button>
+          </div>
         </div>
         <div class="flex justify-center">
           <p class="no-entries hidden">No entries have been recorded.</p>

@@ -32,6 +32,7 @@ cancelButton.addEventListener('click', cancelModal);
 confirmDelete.addEventListener('click', confirmDel);
 searchBar.addEventListener('input', search);
 sortDate.addEventListener('click', sort);
+ul.addEventListener('click', whichTag);
 
 function updateImage(event) {
   photo.setAttribute('src', photoURL.value);
@@ -104,11 +105,15 @@ function journalSingle(object) {
   div.appendChild(p);
   var description = document.createTextNode(object.notes);
   p.prepend(description);
+  var div3 = document.createElement('div');
+  div3.setAttribute('class', 'tagListDiv');
+  div.appendChild(div3);
   for (var y = 0; y < object.tags.length; y++) {
     var tagList = document.createElement('a');
+    tagList.setAttribute('class', 'tagAnchor' + ' ' + object.tags[y]);
     var tagValue = document.createTextNode(object.tags[y] + ' ');
     tagList.appendChild(tagValue);
-    div.appendChild(tagList);
+    div3.appendChild(tagList);
   }
 
   return li;
@@ -143,11 +148,15 @@ function journalView(entry) {
   div.appendChild(p);
   var description = document.createTextNode(entry.notes);
   p.prepend(description);
+  var div3 = document.createElement('div');
+  div3.setAttribute('class', 'tagListDiv');
+  div.appendChild(div3);
   for (var y = 0; y < entry.tags.length; y++) {
     var tagList = document.createElement('a');
+    tagList.setAttribute('class', 'tagAnchor' + ' ' + entry.tags[y]);
     var tagValue = document.createTextNode(entry.tags[y] + ' ');
     tagList.appendChild(tagValue);
-    div.appendChild(tagList);
+    div3.appendChild(tagList);
   }
 
   return li;
@@ -276,3 +285,29 @@ function tagsParse() {
   }
   return arrayPush;
 }
+
+function whichTag(event) {
+  if (event.target.matches('.tagAnchor')) {
+    /*     var tagClicked = event.target.getAttribute('class'); */
+  }
+}
+
+/* function editEntries(event) {
+  if (event.target.matches('.edit')) {
+    for (var y = 0; y < data.entries.length; y++) {
+      if (data.entries[y].entryId === parseInt(event.target.getAttribute('data-entry-id'))) {
+        var notIdMath = y;
+      }
+    }
+    data.editing = data.entries[notIdMath];
+    switchtoForm();
+    title.value = data.editing.title;
+    photoURL.value = data.editing.url;
+    notes.value = data.editing.notes;
+    tags.value = data.editing.tags;
+    photo.setAttribute('src', photoURL.value);
+    deleteButton.setAttribute('class', 'delete');
+    newEntry.setAttribute('class', 'new-entry hidden');
+    editEntry.setAttribute('class', 'edit-entry');
+  }
+} */

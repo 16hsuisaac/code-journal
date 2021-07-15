@@ -20,6 +20,7 @@ var newEntry = document.querySelector('.new-entry');
 var editEntry = document.querySelector('.edit-entry');
 var searchBar = document.querySelector('.search');
 var sortDate = document.querySelector('.sort');
+var tags = document.querySelector('.tags');
 
 photoURL.addEventListener('input', updateImage);
 form.addEventListener('submit', submit);
@@ -41,6 +42,7 @@ function submit(event) {
   if (data.editing !== null) {
     var objectEdit = { title: title.value, url: photoURL.value, notes: notes.value };
     objectEdit.entryId = data.editing.entryId;
+
     for (var u = 0; u < data.entries.length; u++) {
       if (parseInt(data.entries[u].entryId) === objectEdit.entryId) {
         data.entries[u] = objectEdit;
@@ -57,8 +59,10 @@ function submit(event) {
     data.editing = null;
     deleteButton.setAttribute('class', 'delete hidden');
   } else {
-    var object = { title: title.value, url: photoURL.value, notes: notes.value };
+    var object = { title: title.value, url: photoURL.value, notes: notes.value, tags: tags.value };
     object.entryId = data.nextEntryId;
+    var tagsParsed = tagsParse(tags.value);
+    object.tags = tagsParsed;
     data.nextEntryId++;
     data.entries.unshift(object);
     photo.setAttribute('src', 'images/placeholder-image-square.jpg');
@@ -240,4 +244,21 @@ function sort(event) {
   for (var h = 0; h < liItems.length; h++) {
     ul.appendChild(arrayLi[h]);
   }
+}
+
+function tagsParse() {
+  var arrayPush = [];
+  var partString = '';
+  for (var j = 0; j < tags.value.length; j++) {
+    if (j === (parseInt(tags.value.length) - 1)) {
+      partString = partString + tags.value[j];
+      arrayPush.push(partString);
+    } else if (tags.value[j] !== ' ') {
+      partString = partString + tags.value[j];
+    } else {
+      arrayPush.push(partString);
+      partString = '';
+    }
+  }
+  return arrayPush;
 }

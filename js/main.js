@@ -19,6 +19,7 @@ var confirmDelete = document.querySelector('.confirm');
 var newEntry = document.querySelector('.new-entry');
 var editEntry = document.querySelector('.edit-entry');
 var searchBar = document.querySelector('.search');
+var sortDate = document.querySelector('.sort');
 
 photoURL.addEventListener('input', updateImage);
 form.addEventListener('submit', submit);
@@ -29,6 +30,7 @@ deleteButton.addEventListener('click', deleteEntry);
 cancelButton.addEventListener('click', cancelModal);
 confirmDelete.addEventListener('click', confirmDel);
 searchBar.addEventListener('input', search);
+sortDate.addEventListener('click', sort);
 
 function updateImage(event) {
   photo.setAttribute('src', photoURL.value);
@@ -228,5 +230,14 @@ function search(event) {
     for (var g = 0; g < liItems.length; g++) {
       liItems[g].setAttribute('class', 'row');
     }
+  }
+}
+
+function sort(event) {
+  var liItems = document.querySelectorAll('li');
+  var arrayLi = Array.from(liItems);
+  arrayLi = arrayLi.reverse();
+  for (var h = 0; h < liItems.length; h++) {
+    ul.appendChild(arrayLi[h]);
   }
 }

@@ -42,6 +42,13 @@ function submit(event) {
   if (data.editing !== null) {
     var objectEdit = { title: title.value, url: photoURL.value, notes: notes.value };
     objectEdit.entryId = data.editing.entryId;
+    /*     var tagsString = ''; */
+    var tagsEditedParsed = tagsParse(tags.value);
+    objectEdit.tags = tagsEditedParsed;
+    /*     for (var v = 0; v < data.editing.tags.length; v++) {
+      tagsString = tagsString + ' ' + data.editing.tags[v];
+    }
+    objectEdit.tags = tagsString; */
 
     for (var u = 0; u < data.entries.length; u++) {
       if (parseInt(data.entries[u].entryId) === objectEdit.entryId) {
@@ -103,6 +110,10 @@ function journalSingle(object) {
   div.appendChild(p);
   var description = document.createTextNode(object.notes);
   p.prepend(description);
+  var tagList = document.createElement('p');
+  var tagValue = document.createTextNode(object.tags);
+  tagList.appendChild(tagValue);
+  div.appendChild(tagList);
 
   return li;
 }
@@ -136,6 +147,10 @@ function journalView(entry) {
   div.appendChild(p);
   var description = document.createTextNode(entry.notes);
   p.prepend(description);
+  var tagList = document.createElement('p');
+  var tagValue = document.createTextNode(entry.tags);
+  tagList.appendChild(tagValue);
+  div.appendChild(tagList);
 
   return li;
 }
@@ -183,6 +198,7 @@ function editEntries(event) {
     title.value = data.editing.title;
     photoURL.value = data.editing.url;
     notes.value = data.editing.notes;
+    tags.value = data.editing.tags;
     photo.setAttribute('src', photoURL.value);
     deleteButton.setAttribute('class', 'delete');
     newEntry.setAttribute('class', 'new-entry hidden');
@@ -253,7 +269,7 @@ function tagsParse() {
     if (j === (parseInt(tags.value.length) - 1)) {
       partString = partString + tags.value[j];
       arrayPush.push(partString);
-    } else if (tags.value[j] !== ' ') {
+    } else if (tags.value[j] !== ',') {
       partString = partString + tags.value[j];
     } else {
       arrayPush.push(partString);

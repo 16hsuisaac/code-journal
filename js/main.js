@@ -14,6 +14,7 @@ var newButton = document.querySelector('.new');
 var entries = document.querySelector('.entries');
 var deleteButton = document.querySelector('.delete');
 var modal = document.querySelector('.modal');
+var cancelButton = document.querySelector('.cancel');
 
 photoURL.addEventListener('input', updateImage);
 form.addEventListener('submit', submit);
@@ -21,6 +22,7 @@ entriesNav.addEventListener('click', switchtoEntries);
 newButton.addEventListener('click', switchtoForm);
 ul.addEventListener('click', editEntries);
 deleteButton.addEventListener('click', deleteEntry);
+cancelButton.addEventListener('click', cancelModal);
 
 function updateImage(event) {
   photo.setAttribute('src', photoURL.value);
@@ -174,4 +176,8 @@ function editEntries(event) {
 
 function deleteEntry(event) {
   modal.className = 'modal after';
+}
+
+function cancelModal(event) {
+  modal.className = 'modal before';
 }

@@ -210,15 +210,23 @@ function confirmDel(event) {
 
 function search(event) {
   var liItems = document.querySelectorAll('li');
+  var string = event.target.value;
   for (var d = 0; d < data.entries.length; d++) {
-    if (data.entries[d].title === event.target.value) {
+    if (data.entries[d].title === string || data.entries[d].notes.includes(string)) {
       for (var f = 0; f < liItems.length; f++) {
-        if (liItems[f].getAttribute('data-entry-id') !== data.entries[d].entryId) {
+        if (liItems[f].getAttribute('data-entry-id') === data.entries[d].entryId) {
+          liItems[d].setAttribute('class', 'row');
+        } else {
           liItems[d].setAttribute('class', 'row hidden');
         }
       }
     } else {
       liItems[d].setAttribute('class', 'row');
+    }
+  }
+  if (string === '') {
+    for (var g = 0; g < liItems.length; g++) {
+      liItems[g].setAttribute('class', 'row');
     }
   }
 }

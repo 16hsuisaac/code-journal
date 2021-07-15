@@ -13,12 +13,14 @@ var noEntries = document.querySelector('.no-entries');
 var newButton = document.querySelector('.new');
 var entries = document.querySelector('.entries');
 var deleteButton = document.querySelector('.delete');
+var modal = document.querySelector('.modal');
 
 photoURL.addEventListener('input', updateImage);
 form.addEventListener('submit', submit);
 entriesNav.addEventListener('click', switchtoEntries);
 newButton.addEventListener('click', switchtoForm);
 ul.addEventListener('click', editEntries);
+deleteButton.addEventListener('click', deleteEntry);
 
 function updateImage(event) {
   photo.setAttribute('src', photoURL.value);
@@ -168,4 +170,8 @@ function editEntries(event) {
     photo.setAttribute('src', photoURL.value);
     deleteButton.setAttribute('class', 'delete');
   }
+}
+
+function deleteEntry(event) {
+  modal.className = 'modal after';
 }

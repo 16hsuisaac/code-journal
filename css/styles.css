@@ -179,3 +179,7 @@ button {
   height: 1.8rem;
   margin-right: 0.5rem;
 }
+
+.tagAnchor {
+  cursor: pointer;
+}

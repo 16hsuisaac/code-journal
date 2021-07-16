@@ -179,6 +179,10 @@ function switchtoEntries(event) {
   } else {
     entryForm.setAttribute('class', 'entries hidden');
   }
+  var liItems = document.querySelectorAll('li');
+  for (var p = 0; p < liItems.length; p++) {
+    liItems[p].setAttribute('class', 'row');
+  }
 }
 
 function switchtoForm(event) {
@@ -288,26 +292,31 @@ function tagsParse() {
 
 function whichTag(event) {
   if (event.target.matches('.tagAnchor')) {
-    /*     var tagClicked = event.target.getAttribute('class'); */
-  }
-}
-
-/* function editEntries(event) {
-  if (event.target.matches('.edit')) {
-    for (var y = 0; y < data.entries.length; y++) {
-      if (data.entries[y].entryId === parseInt(event.target.getAttribute('data-entry-id'))) {
-        var notIdMath = y;
+    var tagClicked = event.target.getAttribute('class');
+    var actualTag = '';
+    var partTag = '';
+    for (var m = 10; m < tagClicked.length; m++) {
+      if (m === (tagClicked.length - 1)) {
+        partTag = partTag + tagClicked[m];
+        actualTag = partTag;
+      } else if (tagClicked[m] !== ' ') {
+        partTag = partTag + tagClicked[m];
+      } else {
+        actualTag = partTag;
+        partTag = '';
       }
     }
-    data.editing = data.entries[notIdMath];
-    switchtoForm();
-    title.value = data.editing.title;
-    photoURL.value = data.editing.url;
-    notes.value = data.editing.notes;
-    tags.value = data.editing.tags;
-    photo.setAttribute('src', photoURL.value);
-    deleteButton.setAttribute('class', 'delete');
-    newEntry.setAttribute('class', 'new-entry hidden');
-    editEntry.setAttribute('class', 'edit-entry');
+    var liItems = document.querySelectorAll('li');
+    for (var n = 0; n < data.entries.length; n++) {
+      var tagPresent = false;
+      for (var p = 0; p < data.entries[n].tags.length; p++) {
+        if (data.entries[n].tags[p] === actualTag) {
+          tagPresent = true;
+        }
+      }
+      if (tagPresent === false) {
+        liItems[liItems.length - 1 - n].setAttribute('class', 'row hidden');
+      }
+    }
   }
-} */
+}
